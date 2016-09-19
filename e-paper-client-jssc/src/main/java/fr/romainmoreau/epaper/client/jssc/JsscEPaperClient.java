@@ -22,6 +22,7 @@ import fr.romainmoreau.epaper.client.api.command.Command;
 import fr.romainmoreau.epaper.client.api.command.DisplayTextCommand;
 import fr.romainmoreau.epaper.client.api.command.DrawLineCommand;
 import fr.romainmoreau.epaper.client.api.command.DrawPointCommand;
+import fr.romainmoreau.epaper.client.api.command.FillRectangleCommand;
 import fr.romainmoreau.epaper.client.api.command.GetDrawingColorsCommand;
 import fr.romainmoreau.epaper.client.api.command.RefreshAndUpdateCommand;
 import fr.romainmoreau.epaper.client.api.command.SetDrawingColorsCommand;
@@ -82,6 +83,13 @@ public class JsscEPaperClient implements EPaperClient {
 	@Override
 	public synchronized void drawLine(int x0, int y0, int x1, int y1) throws IOException, EPaperException {
 		sendCommand(new DrawLineCommand(x0, y0, x1, y1));
+		waitForResponse();
+		checkResponseOK();
+	}
+
+	@Override
+	public synchronized void fillRectangle(int x0, int y0, int x1, int y1) throws IOException, EPaperException {
+		sendCommand(new FillRectangleCommand(x0, y0, x1, y1));
 		waitForResponse();
 		checkResponseOK();
 	}

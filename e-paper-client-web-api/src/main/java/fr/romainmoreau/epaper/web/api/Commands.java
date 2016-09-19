@@ -11,7 +11,10 @@ public class Commands {
 	private List<Command> commands;
 
 	@XmlElements({ @XmlElement(name = "clear", type = Clear.class),
+			@XmlElement(name = "setDrawingColors", type = SetDrawingColors.class),
 			@XmlElement(name = "drawLine", type = DrawLine.class),
+			@XmlElement(name = "fillRectangle", type = FillRectangle.class),
+			@XmlElement(name = "displayText", type = DisplayText.class),
 			@XmlElement(name = "refreshAndUpdate", type = RefreshAndUpdate.class) })
 	public List<Command> getCommands() {
 		return commands;

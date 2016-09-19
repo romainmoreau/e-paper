@@ -18,6 +18,8 @@ public interface EPaperClient extends Closeable {
 
 	void drawLine(int x0, int y0, int x1, int y1) throws IOException, EPaperException;
 
+	void fillRectangle(int x0, int y0, int x1, int y1) throws IOException, EPaperException;
+
 	void displayText(int x, int y, String text) throws IOException, EPaperException;
 
 	DrawingColors getDrawingColors() throws IOException, EPaperException;
