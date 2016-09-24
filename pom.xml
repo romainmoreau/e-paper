@@ -11,7 +11,7 @@
 	<version>0.1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<modules>
-		<module>e-paper-client-api</module>
+		<module>e-paper-client-common</module>
 		<module>e-paper-client-jssc</module>
 		<module>e-paper-client-web-api</module>
 		<module>e-paper-client-web</module>
