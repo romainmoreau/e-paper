@@ -1,4 +1,4 @@
-package fr.romainmoreau.epaper.client.api;
+package fr.romainmoreau.epaper.client.common;
 
 public class DrawingColors {
 	private final Color foreground;
@@ -26,5 +26,17 @@ public class DrawingColors {
 
 	public Color getBackground() {
 		return background;
+	}
+
+	public static void validateDrawingColors(DrawingColors drawingColors) throws EPaperValidationException {
+		if (drawingColors == null) {
+			throw new EPaperValidationException("Drawing colors null");
+		}
+		if (drawingColors.getBackground() == null) {
+			throw new EPaperValidationException("Background drawing color null");
+		}
+		if (drawingColors.getForeground() == null) {
+			throw new EPaperValidationException("Foreground drawing color null");
+		}
 	}
 }

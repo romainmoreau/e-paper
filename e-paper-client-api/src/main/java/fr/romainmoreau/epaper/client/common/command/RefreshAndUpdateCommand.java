@@ -1,4 +1,4 @@
-package fr.romainmoreau.epaper.client.api.command;
+package fr.romainmoreau.epaper.client.common.command;
 
 public class RefreshAndUpdateCommand extends Command {
 	public RefreshAndUpdateCommand() {

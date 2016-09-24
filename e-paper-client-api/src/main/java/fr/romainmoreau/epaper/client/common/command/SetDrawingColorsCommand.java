@@ -1,8 +1,8 @@
-package fr.romainmoreau.epaper.client.api.command;
+package fr.romainmoreau.epaper.client.common.command;
 
 import java.nio.ByteBuffer;
 
-import fr.romainmoreau.epaper.client.api.DrawingColors;
+import fr.romainmoreau.epaper.client.common.DrawingColors;
 
 public class SetDrawingColorsCommand extends Command {
 	public SetDrawingColorsCommand(DrawingColors drawingColors) {

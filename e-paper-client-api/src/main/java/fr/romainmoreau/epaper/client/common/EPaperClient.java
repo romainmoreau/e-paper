@@ -1,4 +1,4 @@
-package fr.romainmoreau.epaper.client.api;
+package fr.romainmoreau.epaper.client.common;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -22,7 +22,15 @@ public interface EPaperClient extends Closeable {
 
 	void displayText(int x, int y, String text) throws IOException, EPaperException;
 
+	void displayText(int x0, int y0, int x1, int y1, FontSize fontSize, int lineSpacing,
+			HorizontalAlignment horizontalAlignment, VerticalAlignment verticalAlignment, String text)
+			throws IOException, EPaperException;
+
 	DrawingColors getDrawingColors() throws IOException, EPaperException;
 
 	void setDrawingColors(DrawingColors drawingColors) throws IOException, EPaperException;
+
+	FontSize getFontSize() throws IOException, EPaperException;
+
+	void setFontSize(FontSize fontSize) throws IOException, EPaperException;
 }

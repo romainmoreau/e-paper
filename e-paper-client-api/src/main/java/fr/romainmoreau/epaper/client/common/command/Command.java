@@ -1,4 +1,4 @@
-package fr.romainmoreau.epaper.client.api.command;
+package fr.romainmoreau.epaper.client.common.command;
 
 import java.nio.ByteBuffer;
 

@@ -3,9 +3,10 @@ package fr.romainmoreau.epaper.web.api;
 import java.io.IOException;
 
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlValue;
 
-import fr.romainmoreau.epaper.client.api.EPaperClient;
-import fr.romainmoreau.epaper.client.api.EPaperException;
+import fr.romainmoreau.epaper.client.common.EPaperClient;
+import fr.romainmoreau.epaper.client.common.EPaperException;
 
 public class DisplayText implements Command {
 	private int x;
@@ -37,7 +38,7 @@ public class DisplayText implements Command {
 		this.y = y;
 	}
 
-	@XmlAttribute(required = true)
+	@XmlValue
 	public String getText() {
 		return text;
 	}

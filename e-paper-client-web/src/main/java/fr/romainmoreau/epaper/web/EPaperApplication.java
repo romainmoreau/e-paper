@@ -9,7 +9,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import fr.romainmoreau.epaper.client.api.EPaperClient;
+import fr.romainmoreau.epaper.client.common.EPaperClient;
 import fr.romainmoreau.epaper.client.jssc.JsscEPaperClient;
 
 @SpringBootApplication

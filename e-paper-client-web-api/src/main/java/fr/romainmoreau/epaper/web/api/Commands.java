@@ -15,6 +15,7 @@ public class Commands {
 			@XmlElement(name = "drawLine", type = DrawLine.class),
 			@XmlElement(name = "fillRectangle", type = FillRectangle.class),
 			@XmlElement(name = "displayText", type = DisplayText.class),
+			@XmlElement(name = "displayTextRectangle", type = DisplayTextRectangle.class),
 			@XmlElement(name = "refreshAndUpdate", type = RefreshAndUpdate.class) })
 	public List<Command> getCommands() {
 		return commands;

@@ -2,8 +2,8 @@ package fr.romainmoreau.epaper.web.api;
 
 import java.io.IOException;
 
-import fr.romainmoreau.epaper.client.api.EPaperClient;
-import fr.romainmoreau.epaper.client.api.EPaperException;
+import fr.romainmoreau.epaper.client.common.EPaperClient;
+import fr.romainmoreau.epaper.client.common.EPaperException;
 
 public class Clear implements Command {
 	@Override

@@ -23,7 +23,7 @@
 		<dependencies>
 			<dependency>
 				<groupId>fr.romainmoreau.epaper</groupId>
-				<artifactId>e-paper-client-api</artifactId>
+				<artifactId>e-paper-client-common</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>

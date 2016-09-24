@@ -4,10 +4,10 @@ import java.io.IOException;
 
 import javax.xml.bind.annotation.XmlAttribute;
 
-import fr.romainmoreau.epaper.client.api.Color;
-import fr.romainmoreau.epaper.client.api.DrawingColors;
-import fr.romainmoreau.epaper.client.api.EPaperClient;
-import fr.romainmoreau.epaper.client.api.EPaperException;
+import fr.romainmoreau.epaper.client.common.Color;
+import fr.romainmoreau.epaper.client.common.DrawingColors;
+import fr.romainmoreau.epaper.client.common.EPaperClient;
+import fr.romainmoreau.epaper.client.common.EPaperException;
 
 public class SetDrawingColors implements Command {
 	private Color foreground;

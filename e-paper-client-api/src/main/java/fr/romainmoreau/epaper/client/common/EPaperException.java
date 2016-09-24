@@ -1,4 +1,4 @@
-package fr.romainmoreau.epaper.client.api;
+package fr.romainmoreau.epaper.client.common;
 
 public class EPaperException extends Exception {
 	private static final long serialVersionUID = 1L;

@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fr.romainmoreau.epaper.client.api.EPaperClient;
+import fr.romainmoreau.epaper.client.common.EPaperClient;
 import fr.romainmoreau.epaper.web.api.Command;
 import fr.romainmoreau.epaper.web.api.Commands;
 
@@ -40,6 +40,7 @@ public class EPaperWorker {
 
 	@PreDestroy
 	private void preDestroy() {
+		commandsQueue.clear();
 		stop = true;
 		thread.interrupt();
 	}

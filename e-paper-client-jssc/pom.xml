@@ -10,7 +10,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>fr.romainmoreau.epaper</groupId>
-			<artifactId>e-paper-client-api</artifactId>
+			<artifactId>e-paper-client-common</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.scream3r</groupId>

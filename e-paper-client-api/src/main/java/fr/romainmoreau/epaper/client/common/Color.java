@@ -1,4 +1,4 @@
-package fr.romainmoreau.epaper.client.api;
+package fr.romainmoreau.epaper.client.common;
 
 public enum Color {
 	BLACK, DARK_GRAY, LIGHT_GRAY, WHITE;
