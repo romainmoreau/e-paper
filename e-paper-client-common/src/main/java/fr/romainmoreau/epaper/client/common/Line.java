@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import fr.romainmoreau.epaper.client.api.EPaperValidationException;
+import fr.romainmoreau.epaper.client.api.FontSize;
+
 public class Line {
 	private final int maxWidth;
 

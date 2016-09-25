@@ -3,8 +3,8 @@ package fr.romainmoreau.epaper.client.common;
 import org.junit.Assert;
 import org.junit.Test;
 
-import fr.romainmoreau.epaper.client.common.EPaperValidationException;
-import fr.romainmoreau.epaper.client.common.FontSize;
+import fr.romainmoreau.epaper.client.api.EPaperValidationException;
+import fr.romainmoreau.epaper.client.api.FontSize;
 import fr.romainmoreau.epaper.client.common.Line;
 
 public class LineTest {

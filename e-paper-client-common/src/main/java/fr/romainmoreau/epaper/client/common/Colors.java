@@ -11,7 +11,17 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
+import fr.romainmoreau.epaper.client.api.Color;
+import fr.romainmoreau.epaper.client.api.DrawingColors;
+import fr.romainmoreau.epaper.client.api.EPaperValidationException;
+
 public class Colors {
+	public static Color fromRgb(int rgb) {
+		java.awt.Color color = new java.awt.Color(rgb);
+		return Color.values()[(int) Math
+				.floor((0.21 * color.getRed() + 0.72 * color.getGreen() + 0.07 * color.getBlue()) / 64d)];
+	}
+
 	public static Map<Color, List<Point>> getColorPointsMap(InputStream inputStream) throws IOException {
 		BufferedImage image = ImageIO.read(inputStream);
 		Map<Color, List<Point>> points = new HashMap<>();
@@ -20,9 +30,31 @@ public class Colors {
 		}
 		for (int y = 0; y < image.getHeight(); y++) {
 			for (int x = 0; x < image.getWidth(); x++) {
-				points.get(Color.fromRgb(image.getRGB(x, y))).add(new Point(x, y));
+				points.get(Colors.fromRgb(image.getRGB(x, y))).add(new Point(x, y));
 			}
 		}
 		return points;
+	}
+
+	public static DrawingColors getDrawingColors(byte[] response) {
+		return new DrawingColors(getColor(response[0]), getColor(response[1]));
+	}
+
+	private static Color getColor(byte value) {
+		StringBuffer stringBuffer = new StringBuffer();
+		stringBuffer.append((char) value);
+		return Color.values()[Integer.parseInt(stringBuffer.toString())];
+	}
+
+	public static void validateDrawingColors(DrawingColors drawingColors) throws EPaperValidationException {
+		if (drawingColors == null) {
+			throw new EPaperValidationException("Drawing colors null");
+		}
+		if (drawingColors.getBackground() == null) {
+			throw new EPaperValidationException("Background drawing color null");
+		}
+		if (drawingColors.getForeground() == null) {
+			throw new EPaperValidationException("Foreground drawing color null");
+		}
 	}
 }

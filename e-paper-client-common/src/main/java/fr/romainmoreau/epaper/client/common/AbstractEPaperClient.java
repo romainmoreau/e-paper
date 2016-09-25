@@ -7,6 +7,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import fr.romainmoreau.epaper.client.api.Color;
+import fr.romainmoreau.epaper.client.api.DrawingColors;
+import fr.romainmoreau.epaper.client.api.EPaperClient;
+import fr.romainmoreau.epaper.client.api.EPaperException;
+import fr.romainmoreau.epaper.client.api.EPaperResponseException;
+import fr.romainmoreau.epaper.client.api.FontSize;
+import fr.romainmoreau.epaper.client.api.HorizontalAlignment;
+import fr.romainmoreau.epaper.client.api.VerticalAlignment;
 import fr.romainmoreau.epaper.client.common.command.ClearCommand;
 import fr.romainmoreau.epaper.client.common.command.Command;
 import fr.romainmoreau.epaper.client.common.command.DisplayTextCommand;
@@ -112,7 +120,7 @@ public abstract class AbstractEPaperClient implements EPaperClient {
 		waitForResponse();
 		checkResponsePresent();
 		try {
-			return new DrawingColors(getResponse());
+			return Colors.getDrawingColors(getResponse());
 		} catch (Exception e) {
 			throw new EPaperResponseException(getResponse(), e);
 		}
@@ -121,7 +129,7 @@ public abstract class AbstractEPaperClient implements EPaperClient {
 
 	@Override
 	public synchronized void setDrawingColors(DrawingColors drawingColors) throws IOException, EPaperException {
-		DrawingColors.validateDrawingColors(drawingColors);
+		Colors.validateDrawingColors(drawingColors);
 		sendCommand(new SetDrawingColorsCommand(drawingColors));
 		waitForResponse();
 		checkResponseOK();
@@ -133,7 +141,7 @@ public abstract class AbstractEPaperClient implements EPaperClient {
 		waitForResponse();
 		checkResponsePresent();
 		try {
-			return FontSize.getFontSize(getResponse());
+			return Lines.getFontSize(getResponse());
 		} catch (Exception e) {
 			throw new EPaperResponseException(getResponse(), e);
 		}

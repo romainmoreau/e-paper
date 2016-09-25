@@ -16,3 +16,7 @@
 /e-paper-client-web/.settings
 /e-paper-client-web-api/target
 /e-paper-client-web-api/.settings
+/e-paper-client-api/.classpath
+/e-paper-client-api/.settings
+/e-paper-client-api/target
+/e-paper-client-api/.project

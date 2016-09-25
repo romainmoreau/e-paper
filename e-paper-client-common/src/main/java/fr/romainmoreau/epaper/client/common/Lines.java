@@ -7,6 +7,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import fr.romainmoreau.epaper.client.api.EPaperValidationException;
+import fr.romainmoreau.epaper.client.api.FontSize;
+import fr.romainmoreau.epaper.client.api.HorizontalAlignment;
+import fr.romainmoreau.epaper.client.api.VerticalAlignment;
+
 public class Lines {
 	public static final char NO_BREAK_SPACE = '\u00A0';
 
@@ -144,5 +149,11 @@ public class Lines {
 		List<Line> lines = constructLines(width, height, fontSize, spacing, text);
 		alignLines(width, height, topLeftX, topLeftY, fontSize, spacing, horizontalAlignment, verticalAlignment, lines);
 		return lines;
+	}
+
+	public static FontSize getFontSize(byte[] response) {
+		StringBuffer stringBuffer = new StringBuffer();
+		stringBuffer.append((char) response[0]);
+		return FontSize.values()[Integer.parseInt(stringBuffer.toString()) - 1];
 	}
 }

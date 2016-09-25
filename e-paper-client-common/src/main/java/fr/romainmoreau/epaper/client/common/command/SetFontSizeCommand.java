@@ -2,7 +2,7 @@ package fr.romainmoreau.epaper.client.common.command;
 
 import java.nio.ByteBuffer;
 
-import fr.romainmoreau.epaper.client.common.FontSize;
+import fr.romainmoreau.epaper.client.api.FontSize;
 
 public class SetFontSizeCommand extends Command {
 	public SetFontSizeCommand(FontSize fontSize) {

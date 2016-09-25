@@ -1,5 +1,7 @@
 package fr.romainmoreau.epaper.client.common;
 
+import fr.romainmoreau.epaper.client.api.EPaperValidationException;
+
 public class Coordinates {
 	public static final int WIDTH = 800;
 

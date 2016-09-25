@@ -5,8 +5,8 @@ import java.io.IOException;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlValue;
 
-import fr.romainmoreau.epaper.client.common.EPaperClient;
-import fr.romainmoreau.epaper.client.common.EPaperException;
+import fr.romainmoreau.epaper.client.api.EPaperClient;
+import fr.romainmoreau.epaper.client.api.EPaperException;
 
 public class DisplayText implements Command {
 	private int x;

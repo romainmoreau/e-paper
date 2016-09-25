@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import fr.romainmoreau.epaper.client.api.FontSize;
+
 public enum PrintableCharacter {
 	SPACE(' ', 7), //
 	EXCLAMATION_MARK('!', 7), //

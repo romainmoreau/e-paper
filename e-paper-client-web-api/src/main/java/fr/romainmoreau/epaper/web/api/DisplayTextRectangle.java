@@ -5,11 +5,11 @@ import java.io.IOException;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlValue;
 
-import fr.romainmoreau.epaper.client.common.EPaperClient;
-import fr.romainmoreau.epaper.client.common.EPaperException;
-import fr.romainmoreau.epaper.client.common.FontSize;
-import fr.romainmoreau.epaper.client.common.HorizontalAlignment;
-import fr.romainmoreau.epaper.client.common.VerticalAlignment;
+import fr.romainmoreau.epaper.client.api.EPaperClient;
+import fr.romainmoreau.epaper.client.api.EPaperException;
+import fr.romainmoreau.epaper.client.api.FontSize;
+import fr.romainmoreau.epaper.client.api.HorizontalAlignment;
+import fr.romainmoreau.epaper.client.api.VerticalAlignment;
 
 public class DisplayTextRectangle implements Command {
 	private int x0;

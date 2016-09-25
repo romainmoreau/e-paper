@@ -1,4 +1,4 @@
-package fr.romainmoreau.epaper.client.common;
+package fr.romainmoreau.epaper.client.api;
 
 import java.io.Closeable;
 import java.io.IOException;

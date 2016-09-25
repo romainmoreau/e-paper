@@ -8,6 +8,9 @@ import java.util.stream.Collectors;
 import org.junit.Assert;
 import org.junit.Test;
 
+import fr.romainmoreau.epaper.client.api.EPaperValidationException;
+import fr.romainmoreau.epaper.client.api.FontSize;
+
 public class LinesTest {
 	@Test(expected = EPaperValidationException.class)
 	public void validateTextTest1() throws EPaperValidationException {

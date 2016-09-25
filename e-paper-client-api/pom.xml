@@ -6,16 +6,5 @@
 		<artifactId>e-paper</artifactId>
 		<version>0.1.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>e-paper-client-common</artifactId>
-	<dependencies>
-		<dependency>
-			<groupId>fr.romainmoreau.epaper</groupId>
-			<artifactId>e-paper-client-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+	<artifactId>e-paper-client-api</artifactId>
 </project>
