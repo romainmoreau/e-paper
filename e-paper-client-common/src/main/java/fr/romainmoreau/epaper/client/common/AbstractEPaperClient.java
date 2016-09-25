@@ -3,11 +3,13 @@ package fr.romainmoreau.epaper.client.common;
 import java.awt.Point;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 import fr.romainmoreau.epaper.client.api.Color;
+import fr.romainmoreau.epaper.client.api.DisplayDirection;
 import fr.romainmoreau.epaper.client.api.DrawingColors;
 import fr.romainmoreau.epaper.client.api.EPaperClient;
 import fr.romainmoreau.epaper.client.api.EPaperException;
@@ -20,14 +22,19 @@ import fr.romainmoreau.epaper.client.common.command.Command;
 import fr.romainmoreau.epaper.client.common.command.DisplayTextCommand;
 import fr.romainmoreau.epaper.client.common.command.DrawLineCommand;
 import fr.romainmoreau.epaper.client.common.command.DrawPointCommand;
+import fr.romainmoreau.epaper.client.common.command.DrawRectangleCommand;
 import fr.romainmoreau.epaper.client.common.command.FillRectangleCommand;
+import fr.romainmoreau.epaper.client.common.command.GetDisplayDirectionCommand;
 import fr.romainmoreau.epaper.client.common.command.GetDrawingColorsCommand;
 import fr.romainmoreau.epaper.client.common.command.GetFontSizeCommand;
 import fr.romainmoreau.epaper.client.common.command.RefreshAndUpdateCommand;
+import fr.romainmoreau.epaper.client.common.command.SetDisplayDirectionCommand;
 import fr.romainmoreau.epaper.client.common.command.SetDrawingColorsCommand;
 import fr.romainmoreau.epaper.client.common.command.SetFontSizeCommand;
 
 public abstract class AbstractEPaperClient implements EPaperClient {
+	private static final byte[] RESPONSE_OK = "OK".getBytes(StandardCharsets.US_ASCII);
+
 	@Override
 	public synchronized void drawImage(int x, int y, InputStream inputStream) throws IOException, EPaperException {
 		Coordinates.validateCoordinates(x, y);
@@ -67,6 +74,15 @@ public abstract class AbstractEPaperClient implements EPaperClient {
 		Coordinates.validateCoordinates(x0, y0);
 		Coordinates.validateCoordinates(x1, y1);
 		sendCommand(new DrawLineCommand(x0, y0, x1, y1));
+		waitForResponse();
+		checkResponseOK();
+	}
+
+	@Override
+	public synchronized void drawRectangle(int x0, int y0, int x1, int y1) throws IOException, EPaperException {
+		Coordinates.validateCoordinates(x0, y0);
+		Coordinates.validateCoordinates(x1, y1);
+		sendCommand(new DrawRectangleCommand(x0, y0, x1, y1));
 		waitForResponse();
 		checkResponseOK();
 	}
@@ -154,6 +170,28 @@ public abstract class AbstractEPaperClient implements EPaperClient {
 		sendCommand(new SetFontSizeCommand(fontSize));
 		waitForResponse();
 		checkResponseOK();
+	}
+
+	@Override
+	public synchronized void setDisplayDirection(DisplayDirection displayDirection)
+			throws IOException, EPaperException {
+		Coordinates.validateDisplayDirection(displayDirection);
+		sendCommand(new SetDisplayDirectionCommand(displayDirection));
+		waitForResponse();
+		checkResponseOK();
+	}
+
+	@Override
+	public synchronized DisplayDirection getDisplayDirection() throws IOException, EPaperException {
+		sendCommand(new GetDisplayDirectionCommand());
+		waitForResponse();
+		checkResponsePresent();
+		try {
+			return Coordinates.getDisplayDirection(getResponse());
+		} catch (Exception e) {
+			throw new EPaperResponseException(getResponse(), e);
+		}
+
 	}
 
 	protected abstract byte[] getResponse();

@@ -12,6 +12,7 @@ public class Commands {
 
 	@XmlElements({ @XmlElement(name = "clear", type = Clear.class),
 			@XmlElement(name = "setDrawingColors", type = SetDrawingColors.class),
+			@XmlElement(name = "setDisplayDirection", type = SetDisplayDirection.class),
 			@XmlElement(name = "drawLine", type = DrawLine.class),
 			@XmlElement(name = "fillRectangle", type = FillRectangle.class),
 			@XmlElement(name = "displayText", type = DisplayText.class),

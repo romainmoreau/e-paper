@@ -3,10 +3,11 @@ package fr.romainmoreau.epaper.client.api;
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 
 public interface EPaperClient extends Closeable {
-	static final byte[] RESPONSE_OK = "OK".getBytes(StandardCharsets.US_ASCII);
+	static final int WIDTH = 800;
+
+	static final int HEIGHT = 600;
 
 	void drawImage(int x, int y, InputStream inputStream) throws IOException, EPaperException;
 
@@ -17,6 +18,8 @@ public interface EPaperClient extends Closeable {
 	void drawPoint(int x, int y) throws IOException, EPaperException;
 
 	void drawLine(int x0, int y0, int x1, int y1) throws IOException, EPaperException;
+
+	void drawRectangle(int x0, int y0, int x1, int y1) throws IOException, EPaperException;
 
 	void fillRectangle(int x0, int y0, int x1, int y1) throws IOException, EPaperException;
 
@@ -33,4 +36,8 @@ public interface EPaperClient extends Closeable {
 	FontSize getFontSize() throws IOException, EPaperException;
 
 	void setFontSize(FontSize fontSize) throws IOException, EPaperException;
+
+	void setDisplayDirection(DisplayDirection displayDirection) throws IOException, EPaperException;
+
+	DisplayDirection getDisplayDirection() throws IOException, EPaperException;
 }

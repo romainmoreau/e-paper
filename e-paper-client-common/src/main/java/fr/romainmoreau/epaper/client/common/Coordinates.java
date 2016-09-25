@@ -1,12 +1,10 @@
 package fr.romainmoreau.epaper.client.common;
 
+import fr.romainmoreau.epaper.client.api.DisplayDirection;
+import fr.romainmoreau.epaper.client.api.EPaperClient;
 import fr.romainmoreau.epaper.client.api.EPaperValidationException;
 
 public class Coordinates {
-	public static final int WIDTH = 800;
-
-	public static final int HEIGHT = 600;
-
 	public static int getTopLeftX(int x0, int x1) {
 		return Math.min(x0, x1);
 	}
@@ -24,11 +22,23 @@ public class Coordinates {
 	}
 
 	public static void validateCoordinates(int x, int y) throws EPaperValidationException {
-		if (x < 0 || x >= WIDTH) {
-			throw new EPaperValidationException("Invalid x");
+		if (x < 0 || x >= EPaperClient.WIDTH) {
+			throw new EPaperValidationException("Invalid x: " + x);
 		}
-		if (y < 0 || y >= HEIGHT) {
-			throw new EPaperValidationException("Invalid y");
+		if (y < 0 || y >= EPaperClient.HEIGHT) {
+			throw new EPaperValidationException("Invalid y: " + y);
 		}
+	}
+
+	public static void validateDisplayDirection(DisplayDirection displayDirection) throws EPaperValidationException {
+		if (displayDirection == null) {
+			throw new EPaperValidationException("Empty display direction");
+		}
+	}
+
+	public static DisplayDirection getDisplayDirection(byte[] response) {
+		StringBuffer stringBuffer = new StringBuffer();
+		stringBuffer.append((char) response[0]);
+		return DisplayDirection.values()[Integer.parseInt(stringBuffer.toString())];
 	}
 }
