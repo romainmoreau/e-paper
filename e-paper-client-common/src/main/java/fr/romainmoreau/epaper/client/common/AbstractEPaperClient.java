@@ -35,6 +35,12 @@ import fr.romainmoreau.epaper.client.common.command.SetFontSizeCommand;
 public abstract class AbstractEPaperClient implements EPaperClient {
 	private static final byte[] RESPONSE_OK = "OK".getBytes(StandardCharsets.US_ASCII);
 
+	private final long timeout;
+
+	public AbstractEPaperClient(long timeout) {
+		this.timeout = timeout;
+	}
+
 	@Override
 	public synchronized void drawImage(int x, int y, InputStream inputStream) throws IOException, EPaperException {
 		Coordinates.validateCoordinates(x, y);
@@ -194,11 +200,19 @@ public abstract class AbstractEPaperClient implements EPaperClient {
 
 	}
 
+	public long getTimeout() {
+		return timeout;
+	}
+
 	protected abstract byte[] getResponse();
 
 	protected abstract void sendCommand(Command command) throws IOException;
 
-	protected abstract void waitForResponse();
+	protected abstract void waitForResponse(long timeout);
+
+	private void waitForResponse() {
+		waitForResponse(timeout);
+	}
 
 	private void checkResponsePresent() throws EPaperResponseException {
 		if (getResponse() == null) {

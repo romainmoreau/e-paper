@@ -19,10 +19,13 @@ public class EPaperApplication {
 	@Value("${e-paper-client.port-name}")
 	private String portName;
 
+	@Value("${e-paper-client.timeout}")
+	private long timeout;
+
 	@Bean
 	public EPaperClient ePaperClient() throws IOException {
-		LOGGER.info("Creating e-paper client using port name {}", portName);
-		return new JsscEPaperClient(portName);
+		LOGGER.info("Creating e-paper client using port name {} and timeout {}", portName, timeout);
+		return new JsscEPaperClient(portName, timeout);
 	}
 
 	public static final void main(String[] args) throws Exception {

@@ -9,13 +9,12 @@ import jssc.SerialPortEvent;
 import jssc.SerialPortException;
 
 public class JsscEPaperClient extends AbstractEPaperClient {
-	private static final long TIMEOUT = 5000;
-
 	private SerialPort serialPort;
 
 	private volatile byte[] response;
 
-	public JsscEPaperClient(String portName) throws IOException {
+	public JsscEPaperClient(String portName, long timeout) throws IOException {
+		super(timeout);
 		try {
 			serialPort = new SerialPort(portName);
 			serialPort.openPort();
@@ -53,9 +52,9 @@ public class JsscEPaperClient extends AbstractEPaperClient {
 	}
 
 	@Override
-	protected void waitForResponse() {
+	protected void waitForResponse(long timeout) {
 		try {
-			wait(TIMEOUT);
+			wait(timeout);
 		} catch (InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
