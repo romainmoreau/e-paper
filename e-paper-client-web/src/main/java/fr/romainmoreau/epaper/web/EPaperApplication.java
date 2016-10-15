@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -16,16 +16,14 @@ import fr.romainmoreau.epaper.client.jssc.JsscEPaperClient;
 public class EPaperApplication {
 	private static final Logger LOGGER = LoggerFactory.getLogger(EPaperApplication.class);
 
-	@Value("${e-paper-client.port-name}")
-	private String portName;
-
-	@Value("${e-paper-client.timeout}")
-	private long timeout;
+	@Autowired
+	private EPaperProperties ePaperProperties;
 
 	@Bean
 	public EPaperClient ePaperClient() throws IOException {
-		LOGGER.info("Creating e-paper client using port name {} and timeout {}", portName, timeout);
-		return new JsscEPaperClient(portName, timeout);
+		LOGGER.info("Creating e-paper client using port name {} and timeout {}", ePaperProperties.getPortName(),
+				ePaperProperties.getTimeout());
+		return new JsscEPaperClient(ePaperProperties.getPortName(), ePaperProperties.getTimeout());
 	}
 
 	public static final void main(String[] args) throws Exception {
