@@ -1,7 +1,6 @@
 package fr.romainmoreau.epaper.client.api;
 
 public enum FontSize {
-	// FIXME: calculate and update letter spacing for 48 and 64
 	DOTS_32(32, 1), DOTS_48(48, 1), DOTS_64(64, 1);
 
 	private final int height;
