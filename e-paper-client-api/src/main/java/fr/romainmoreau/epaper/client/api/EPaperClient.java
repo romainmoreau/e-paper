@@ -4,6 +4,8 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 
+import fr.romainmoreau.epaper.client.api.table.Table;
+
 public interface EPaperClient extends Closeable {
 	static final int WIDTH = 800;
 
@@ -20,6 +22,8 @@ public interface EPaperClient extends Closeable {
 	void drawLine(int x0, int y0, int x1, int y1) throws IOException, EPaperException;
 
 	void drawRectangle(int x0, int y0, int x1, int y1) throws IOException, EPaperException;
+
+	void drawTable(int x0, int y0, int x1, int y1, Table table) throws IOException, EPaperException;
 
 	void fillRectangle(int x0, int y0, int x1, int y1) throws IOException, EPaperException;
 

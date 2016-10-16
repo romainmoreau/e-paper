@@ -15,6 +15,7 @@ public class Commands {
 			@XmlElement(name = "setDisplayDirection", type = SetDisplayDirection.class),
 			@XmlElement(name = "drawLine", type = DrawLine.class),
 			@XmlElement(name = "drawRectangle", type = DrawRectangle.class),
+			@XmlElement(name = "drawTable", type = DrawTable.class),
 			@XmlElement(name = "fillRectangle", type = FillRectangle.class),
 			@XmlElement(name = "displayText", type = DisplayText.class),
 			@XmlElement(name = "displayTextRectangle", type = DisplayTextRectangle.class),

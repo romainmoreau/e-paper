@@ -17,6 +17,9 @@ import fr.romainmoreau.epaper.client.api.EPaperResponseException;
 import fr.romainmoreau.epaper.client.api.FontSize;
 import fr.romainmoreau.epaper.client.api.HorizontalAlignment;
 import fr.romainmoreau.epaper.client.api.VerticalAlignment;
+import fr.romainmoreau.epaper.client.api.table.CellContent;
+import fr.romainmoreau.epaper.client.api.table.CellContentDrawer;
+import fr.romainmoreau.epaper.client.api.table.Table;
 import fr.romainmoreau.epaper.client.common.command.ClearCommand;
 import fr.romainmoreau.epaper.client.common.command.Command;
 import fr.romainmoreau.epaper.client.common.command.DisplayTextCommand;
@@ -31,8 +34,12 @@ import fr.romainmoreau.epaper.client.common.command.RefreshAndUpdateCommand;
 import fr.romainmoreau.epaper.client.common.command.SetDisplayDirectionCommand;
 import fr.romainmoreau.epaper.client.common.command.SetDrawingColorsCommand;
 import fr.romainmoreau.epaper.client.common.command.SetFontSizeCommand;
+import fr.romainmoreau.epaper.client.common.table.DrawableBorder;
+import fr.romainmoreau.epaper.client.common.table.DrawableCell;
+import fr.romainmoreau.epaper.client.common.table.DrawableTable;
+import fr.romainmoreau.epaper.client.common.table.Tables;
 
-public abstract class AbstractEPaperClient implements EPaperClient {
+public abstract class AbstractEPaperClient implements EPaperClient, CellContentDrawer {
 	private static final byte[] RESPONSE_OK = "OK".getBytes(StandardCharsets.US_ASCII);
 
 	private final long timeout;
@@ -50,6 +57,46 @@ public abstract class AbstractEPaperClient implements EPaperClient {
 			for (Point point : colorPointsMap.get(color)) {
 				drawPoint(x + point.x, y + point.y);
 			}
+		}
+	}
+
+	@Override
+	public synchronized void drawPadded(int x0, int y0, int x1, int y1, int padding, CellContent cellContent)
+			throws IOException, EPaperException {
+		int topLeftX = Coordinates.getTopLeftX(x0, x1);
+		int topLeftY = Coordinates.getTopLeftY(y0, y1);
+		int bottomRightX = Coordinates.getBottomRightX(x0, x1);
+		int bottomRightY = Coordinates.getBottomRightY(y0, y1);
+		cellContent.draw(topLeftX + padding, topLeftY + padding, bottomRightX - padding, bottomRightY - padding, this);
+	}
+
+	@Override
+	public synchronized void drawText(int x0, int y0, int x1, int y1, FontSize fontSize, int lineSpacing,
+			HorizontalAlignment horizontalAlignment, VerticalAlignment verticalAlignment, String text)
+			throws IOException, EPaperException {
+		displayText(x0, y0, x1, y1, fontSize, lineSpacing, horizontalAlignment, verticalAlignment, text);
+	}
+
+	@Override
+	public synchronized void drawTable(int x0, int y0, int x1, int y1, Table table)
+			throws IOException, EPaperException {
+		Coordinates.validateCoordinates(x0, y0);
+		Coordinates.validateCoordinates(x1, y1);
+		int topLeftX = Coordinates.getTopLeftX(x0, x1);
+		int topLeftY = Coordinates.getTopLeftY(y0, y1);
+		int width = Coordinates.getBottomRightX(x0, x1) - topLeftX;
+		int height = Coordinates.getBottomRightY(y0, y1) - topLeftY;
+		Tables.validateTable(width, height, table);
+		DrawableTable drawableTable = Tables.getDrawableTable(width, height, topLeftX, topLeftY, table);
+		for (DrawableCell drawableCell : drawableTable.getDrawableCells()) {
+			for (CellContent cellContent : drawableCell.getCellContents()) {
+				cellContent.draw(drawableCell.getX0(), drawableCell.getY0(), drawableCell.getX1(), drawableCell.getY1(),
+						this);
+			}
+		}
+		for (DrawableBorder drawableBorder : drawableTable.getDrawableBorders()) {
+			fillRectangle(drawableBorder.getX0(), drawableBorder.getY0(), drawableBorder.getX1(),
+					drawableBorder.getY1());
 		}
 	}
 
