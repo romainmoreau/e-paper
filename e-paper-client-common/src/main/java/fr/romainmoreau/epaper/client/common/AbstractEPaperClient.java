@@ -7,6 +7,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 import fr.romainmoreau.epaper.client.api.Color;
 import fr.romainmoreau.epaper.client.api.DisplayDirection;
@@ -94,9 +96,14 @@ public abstract class AbstractEPaperClient implements EPaperClient, CellContentD
 						this);
 			}
 		}
-		for (DrawableBorder drawableBorder : drawableTable.getDrawableBorders()) {
-			fillRectangle(drawableBorder.getX0(), drawableBorder.getY0(), drawableBorder.getX1(),
-					drawableBorder.getY1());
+		for (Entry<Color, List<DrawableBorder>> colorDrawableBorderListEntry : drawableTable.getDrawableBorders()
+				.stream().collect(Collectors.groupingBy(DrawableBorder::getColor)).entrySet()) {
+			setDrawingColors(
+					new DrawingColors(colorDrawableBorderListEntry.getKey(), colorDrawableBorderListEntry.getKey()));
+			for (DrawableBorder drawableBorder : colorDrawableBorderListEntry.getValue()) {
+				fillRectangle(drawableBorder.getX0(), drawableBorder.getY0(), drawableBorder.getX1(),
+						drawableBorder.getY1());
+			}
 		}
 	}
 

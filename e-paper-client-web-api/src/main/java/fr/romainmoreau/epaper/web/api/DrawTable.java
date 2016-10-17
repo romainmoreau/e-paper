@@ -10,6 +10,7 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import fr.romainmoreau.epaper.client.api.Color;
 import fr.romainmoreau.epaper.client.api.EPaperClient;
 import fr.romainmoreau.epaper.client.api.EPaperException;
+import fr.romainmoreau.epaper.web.api.table.Border;
 import fr.romainmoreau.epaper.web.api.table.Cell;
 import fr.romainmoreau.epaper.web.api.table.Column;
 import fr.romainmoreau.epaper.web.api.table.Row;
@@ -25,7 +26,11 @@ public class DrawTable implements Command {
 
 	private List<Column> columns;
 
+	private List<Border> verticalBorders;
+
 	private List<Row> rows;
+
+	private List<Border> horizontalBorders;
 
 	private List<Cell> cells;
 
@@ -39,15 +44,22 @@ public class DrawTable implements Command {
 	}
 
 	public fr.romainmoreau.epaper.client.api.table.Table toTable() {
-		fr.romainmoreau.epaper.client.api.table.Table table = new fr.romainmoreau.epaper.client.api.table.Table(
-				borderSize, borderColor);
+		fr.romainmoreau.epaper.client.api.table.Table table = new fr.romainmoreau.epaper.client.api.table.Table();
 		if (columns != null) {
 			List<fr.romainmoreau.epaper.client.api.table.Column> columns = table.getColumns();
 			this.columns.stream().map(Column::toColumn).forEach(columns::add);
 		}
+		if (verticalBorders != null) {
+			List<fr.romainmoreau.epaper.client.api.table.Border> verticalBorders = table.getVerticalBorders();
+			this.verticalBorders.stream().map(Border::toBorder).forEach(verticalBorders::add);
+		}
 		if (rows != null) {
 			List<fr.romainmoreau.epaper.client.api.table.Row> rows = table.getRows();
 			this.rows.stream().map(Row::toRow).forEach(rows::add);
+		}
+		if (horizontalBorders != null) {
+			List<fr.romainmoreau.epaper.client.api.table.Border> horizontalBorders = table.getHorizontalBorders();
+			this.horizontalBorders.stream().map(Border::toBorder).forEach(horizontalBorders::add);
 		}
 		if (cells != null) {
 			List<fr.romainmoreau.epaper.client.api.table.Cell> cells = table.getCells();
@@ -102,6 +114,16 @@ public class DrawTable implements Command {
 		this.columns = columns;
 	}
 
+	@XmlElement(name = "border")
+	@XmlElementWrapper(name = "verticalBorders")
+	public List<Border> getVerticalBorders() {
+		return verticalBorders;
+	}
+
+	public void setVerticalBorders(List<Border> verticalBorders) {
+		this.verticalBorders = verticalBorders;
+	}
+
 	@XmlElement(name = "row")
 	@XmlElementWrapper(name = "rows")
 	public List<Row> getRows() {
@@ -110,6 +132,16 @@ public class DrawTable implements Command {
 
 	public void setRows(List<Row> rows) {
 		this.rows = rows;
+	}
+
+	@XmlElement(name = "border")
+	@XmlElementWrapper(name = "horizontalBorders")
+	public List<Border> getHorizontalBorders() {
+		return horizontalBorders;
+	}
+
+	public void setHorizontalBorders(List<Border> horizontalBorders) {
+		this.horizontalBorders = horizontalBorders;
 	}
 
 	@XmlElement(name = "cell")
