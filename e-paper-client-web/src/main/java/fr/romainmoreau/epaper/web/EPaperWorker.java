@@ -12,8 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.romainmoreau.epaper.client.api.EPaperClient;
-import fr.romainmoreau.epaper.web.api.Command;
-import fr.romainmoreau.epaper.web.api.Commands;
+import fr.romainmoreau.epaper.jaxb.api.Command;
+import fr.romainmoreau.epaper.jaxb.api.Commands;
 
 @Service
 public class EPaperWorker {

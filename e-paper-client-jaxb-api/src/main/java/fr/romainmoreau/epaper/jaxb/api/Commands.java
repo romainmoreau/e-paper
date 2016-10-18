@@ -1,4 +1,4 @@
-package fr.romainmoreau.epaper.web.api;
+package fr.romainmoreau.epaper.jaxb.api;
 
 import java.util.List;
 

@@ -23,7 +23,7 @@
 		</dependency>
 		<dependency>
 			<groupId>fr.romainmoreau.epaper</groupId>
-			<artifactId>e-paper-client-web-api</artifactId>
+			<artifactId>e-paper-client-jaxb-api</artifactId>
 		</dependency>
 	</dependencies>
 	<build>

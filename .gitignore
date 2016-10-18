@@ -1,11 +1,11 @@
 /e-paper-client-common/.classpath
 /e-paper-client-jssc/.classpath
-/e-paper-client-web-api/.classpath
+/e-paper-client-jaxb-api/.classpath
 /e-paper-client-web/.classpath
 /.project
 /e-paper-client-common/.project
 /e-paper-client-jssc/.project
-/e-paper-client-web-api/.project
+/e-paper-client-jaxb-api/.project
 /e-paper-client-web/.project
 /.settings
 /e-paper-client-common/target
@@ -14,8 +14,8 @@
 /e-paper-client-jssc/.settings
 /e-paper-client-web/target
 /e-paper-client-web/.settings
-/e-paper-client-web-api/target
-/e-paper-client-web-api/.settings
+/e-paper-client-jaxb-api/target
+/e-paper-client-jaxb-api/.settings
 /e-paper-client-api/.classpath
 /e-paper-client-api/.settings
 /e-paper-client-api/target

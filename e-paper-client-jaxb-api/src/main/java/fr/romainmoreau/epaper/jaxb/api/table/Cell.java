@@ -1,4 +1,4 @@
-package fr.romainmoreau.epaper.web.api.table;
+package fr.romainmoreau.epaper.jaxb.api.table;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;

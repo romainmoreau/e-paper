@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import fr.romainmoreau.epaper.web.api.Commands;
+import fr.romainmoreau.epaper.jaxb.api.Commands;
 
 @Controller
 @RequestMapping("/")

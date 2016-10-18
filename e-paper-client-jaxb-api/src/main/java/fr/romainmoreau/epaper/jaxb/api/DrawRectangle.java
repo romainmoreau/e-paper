@@ -1,4 +1,4 @@
-package fr.romainmoreau.epaper.web.api;
+package fr.romainmoreau.epaper.jaxb.api;
 
 import java.io.IOException;
 
@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import fr.romainmoreau.epaper.client.api.EPaperClient;
 import fr.romainmoreau.epaper.client.api.EPaperException;
 
-public class DrawLine implements Command {
+public class DrawRectangle implements Command {
 	private int x0;
 
 	private int y0;
@@ -18,7 +18,7 @@ public class DrawLine implements Command {
 
 	@Override
 	public void execute(EPaperClient ePaperClient) throws IOException, EPaperException {
-		ePaperClient.drawLine(x0, y0, x1, y1);
+		ePaperClient.drawRectangle(x0, y0, x1, y1);
 	}
 
 	@XmlAttribute(required = true)

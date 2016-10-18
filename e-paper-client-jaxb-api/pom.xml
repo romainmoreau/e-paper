@@ -6,7 +6,7 @@
 		<artifactId>e-paper</artifactId>
 		<version>0.1.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>e-paper-client-web-api</artifactId>
+	<artifactId>e-paper-client-jaxb-api</artifactId>
 	<dependencies>
 		<dependency>
 			<groupId>fr.romainmoreau.epaper</groupId>

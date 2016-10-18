@@ -12,9 +12,9 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>e-paper-client-api</module>
+		<module>e-paper-client-jaxb-api</module>
 		<module>e-paper-client-common</module>
 		<module>e-paper-client-jssc</module>
-		<module>e-paper-client-web-api</module>
 		<module>e-paper-client-web</module>
 	</modules>
 	<properties>
@@ -39,7 +39,7 @@
 			</dependency>
 			<dependency>
 				<groupId>fr.romainmoreau.epaper</groupId>
-				<artifactId>e-paper-client-web-api</artifactId>
+				<artifactId>e-paper-client-jaxb-api</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
