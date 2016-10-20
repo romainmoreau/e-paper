@@ -2,6 +2,7 @@ package fr.romainmoreau.epaper.client.common.table;
 
 import java.util.List;
 
+import fr.romainmoreau.epaper.client.api.Color;
 import fr.romainmoreau.epaper.client.api.table.CellContent;
 
 public class DrawableCell {
@@ -13,13 +14,16 @@ public class DrawableCell {
 
 	private final int y1;
 
+	private final Color backgroundColor;
+
 	private final List<CellContent> cellContents;
 
-	public DrawableCell(int x0, int y0, int x1, int y1, List<CellContent> cellContents) {
+	public DrawableCell(int x0, int y0, int x1, int y1, Color backgroundColor, List<CellContent> cellContents) {
 		this.x0 = x0;
 		this.y0 = y0;
 		this.x1 = x1;
 		this.y1 = y1;
+		this.backgroundColor = backgroundColor;
 		this.cellContents = cellContents;
 	}
 
@@ -37,6 +41,10 @@ public class DrawableCell {
 
 	public int getY1() {
 		return y1;
+	}
+
+	public Color getBackgroundColor() {
+		return backgroundColor;
 	}
 
 	public List<CellContent> getCellContents() {

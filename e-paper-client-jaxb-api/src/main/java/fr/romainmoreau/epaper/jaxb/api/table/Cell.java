@@ -4,6 +4,8 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElements;
 
+import fr.romainmoreau.epaper.client.api.Color;
+
 public class Cell {
 	private int columnIndex;
 
@@ -11,10 +13,12 @@ public class Cell {
 
 	private int zIndex;
 
+	private Color backgroundColor;
+
 	private CellContent cellContent;
 
 	public fr.romainmoreau.epaper.client.api.table.Cell toCell() {
-		return new fr.romainmoreau.epaper.client.api.table.Cell(columnIndex, rowIndex, zIndex,
+		return new fr.romainmoreau.epaper.client.api.table.Cell(columnIndex, rowIndex, zIndex, backgroundColor,
 				cellContent.toCellContent());
 	}
 
@@ -37,12 +41,21 @@ public class Cell {
 	}
 
 	@XmlAttribute(required = true)
-	public int getzIndex() {
+	public int getZIndex() {
 		return zIndex;
 	}
 
-	public void setzIndex(int zIndex) {
+	public void setZIndex(int zIndex) {
 		this.zIndex = zIndex;
+	}
+
+	@XmlAttribute(required = false)
+	public Color getBackgroundColor() {
+		return backgroundColor;
+	}
+
+	public void setBackgroundColor(Color backgroundColor) {
+		this.backgroundColor = backgroundColor;
 	}
 
 	@XmlElements({ @XmlElement(name = "padded", type = Padded.class), @XmlElement(name = "text", type = Text.class) })

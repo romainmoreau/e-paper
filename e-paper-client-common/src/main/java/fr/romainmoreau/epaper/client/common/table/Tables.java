@@ -3,6 +3,7 @@ package fr.romainmoreau.epaper.client.common.table;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NavigableMap;
+import java.util.Optional;
 import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -126,11 +127,21 @@ public class Tables {
 					int rowHeight = rowHeights.get(j);
 					cy1 = cy0 + rowHeight - 1;
 					if (cellCells != null) {
-						drawableTable.getDrawableCells()
-								.add(new DrawableCell(cx0, cy0, cx1, cy1,
-										cellCells.stream()
-												.sorted((c1, c2) -> Integer.compare(c1.getZIndex(), c2.getZIndex()))
-												.map(Cell::getCellContent).collect(Collectors.toList())));
+						Optional<Cell> lastBackgroundColorNullCellOptional = cellCells.stream()
+								.sorted((c1, c2) -> Integer.compare(c2.getZIndex(), c1.getZIndex()))
+								.filter(c -> c.getBackgroundColor() != null).findFirst();
+						List<Cell> drawableCellCells = cellCells.stream()
+								.sorted((c1, c2) -> Integer.compare(c1.getZIndex(), c2.getZIndex()))
+								.collect(Collectors.toList());
+						if (lastBackgroundColorNullCellOptional.isPresent()
+								&& drawableCellCells.stream().filter(c -> c.getBackgroundColor() != null).count() > 1) {
+							drawableCellCells
+									.subList(0, drawableCellCells.indexOf(lastBackgroundColorNullCellOptional.get()))
+									.clear();
+						}
+						drawableTable.getDrawableCells().add(new DrawableCell(cx0, cy0, cx1, cy1,
+								lastBackgroundColorNullCellOptional.map(Cell::getBackgroundColor).orElse(null),
+								drawableCellCells.stream().map(Cell::getCellContent).collect(Collectors.toList())));
 					}
 					cy0 = cy1 + horizontalBorders.get(j + 1).getSize();
 				}

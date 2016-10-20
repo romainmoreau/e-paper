@@ -92,6 +92,11 @@ public abstract class AbstractEPaperClient implements EPaperClient, CellContentD
 		Tables.validateTable(width, height, table);
 		DrawableTable drawableTable = Tables.getDrawableTable(width, height, topLeftX, topLeftY, table);
 		for (DrawableCell drawableCell : drawableTable.getDrawableCells()) {
+			if (drawableCell.getBackgroundColor() != null) {
+				setDrawingColors(
+						new DrawingColors(drawableCell.getBackgroundColor(), drawableCell.getBackgroundColor()));
+				fillRectangle(drawableCell.getX0(), drawableCell.getY0(), drawableCell.getX1(), drawableCell.getY1());
+			}
 			for (CellContent cellContent : drawableCell.getCellContents()) {
 				cellContent.draw(drawableCell.getX0(), drawableCell.getY0(), drawableCell.getX1(), drawableCell.getY1(),
 						this);
