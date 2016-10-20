@@ -74,9 +74,10 @@ public abstract class AbstractEPaperClient implements EPaperClient, CellContentD
 	}
 
 	@Override
-	public synchronized void drawText(int x0, int y0, int x1, int y1, FontSize fontSize, int lineSpacing,
-			HorizontalAlignment horizontalAlignment, VerticalAlignment verticalAlignment, String text)
-			throws IOException, EPaperException {
+	public synchronized void drawText(int x0, int y0, int x1, int y1, Color textColor, Color backgroundColor,
+			FontSize fontSize, int lineSpacing, HorizontalAlignment horizontalAlignment,
+			VerticalAlignment verticalAlignment, String text) throws IOException, EPaperException {
+		setDrawingColors(new DrawingColors(textColor, backgroundColor));
 		displayText(x0, y0, x1, y1, fontSize, lineSpacing, horizontalAlignment, verticalAlignment, text);
 	}
 

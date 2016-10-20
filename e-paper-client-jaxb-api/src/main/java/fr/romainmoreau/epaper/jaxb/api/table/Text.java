@@ -3,12 +3,17 @@ package fr.romainmoreau.epaper.jaxb.api.table;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlValue;
 
+import fr.romainmoreau.epaper.client.api.Color;
 import fr.romainmoreau.epaper.client.api.FontSize;
 import fr.romainmoreau.epaper.client.api.HorizontalAlignment;
 import fr.romainmoreau.epaper.client.api.VerticalAlignment;
 import fr.romainmoreau.epaper.client.api.table.TextCellContent;
 
 public class Text implements CellContent {
+	private Color textColor;
+
+	private Color backgroundColor;
+
 	private FontSize fontSize;
 
 	private int lineSpacing;
@@ -21,7 +26,26 @@ public class Text implements CellContent {
 
 	@Override
 	public fr.romainmoreau.epaper.client.api.table.CellContent toCellContent() {
-		return new TextCellContent(fontSize, lineSpacing, horizontalAlignment, verticalAlignment, text);
+		return new TextCellContent(textColor, backgroundColor, fontSize, lineSpacing, horizontalAlignment,
+				verticalAlignment, text);
+	}
+
+	@XmlAttribute(required = true)
+	public Color getTextColor() {
+		return textColor;
+	}
+
+	public void setTextColor(Color textColor) {
+		this.textColor = textColor;
+	}
+
+	@XmlAttribute(required = true)
+	public Color getBackgroundColor() {
+		return backgroundColor;
+	}
+
+	public void setBackgroundColor(Color backgroundColor) {
+		this.backgroundColor = backgroundColor;
 	}
 
 	@XmlAttribute(required = true)
