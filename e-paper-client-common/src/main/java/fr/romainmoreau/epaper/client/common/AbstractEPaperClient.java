@@ -63,13 +63,14 @@ public abstract class AbstractEPaperClient implements EPaperClient, CellContentD
 	}
 
 	@Override
-	public synchronized void drawPadded(int x0, int y0, int x1, int y1, int padding, CellContent cellContent)
-			throws IOException, EPaperException {
+	public synchronized void drawPadded(int x0, int y0, int x1, int y1, int leftPadding, int rightPadding,
+			int topPadding, int bottomPadding, CellContent cellContent) throws IOException, EPaperException {
 		int topLeftX = Coordinates.getTopLeftX(x0, x1);
 		int topLeftY = Coordinates.getTopLeftY(y0, y1);
 		int bottomRightX = Coordinates.getBottomRightX(x0, x1);
 		int bottomRightY = Coordinates.getBottomRightY(y0, y1);
-		cellContent.draw(topLeftX + padding, topLeftY + padding, bottomRightX - padding, bottomRightY - padding, this);
+		cellContent.draw(topLeftX + leftPadding, topLeftY + topPadding, bottomRightX - rightPadding,
+				bottomRightY - bottomPadding, this);
 	}
 
 	@Override

@@ -8,8 +8,8 @@ import fr.romainmoreau.epaper.client.api.HorizontalAlignment;
 import fr.romainmoreau.epaper.client.api.VerticalAlignment;
 
 public interface CellContentDrawer {
-	void drawPadded(int x0, int y0, int x1, int y1, int padding, CellContent cellContent)
-			throws IOException, EPaperException;
+	void drawPadded(int x0, int y0, int x1, int y1, int leftPadding, int rightPadding, int topPadding,
+			int bottomPadding, CellContent cellContent) throws IOException, EPaperException;
 
 	void drawText(int x0, int y0, int x1, int y1, FontSize fontSize, int lineSpacing,
 			HorizontalAlignment horizontalAlignment, VerticalAlignment verticalAlignment, String text)
