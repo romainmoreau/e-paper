@@ -3,6 +3,7 @@ package fr.romainmoreau.epaper.client.common.table;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NavigableMap;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.TreeMap;
 import java.util.function.Function;
@@ -139,14 +140,16 @@ public class Tables {
 									.subList(0, drawableCellCells.indexOf(lastBackgroundColorNullCellOptional.get()))
 									.clear();
 						}
-						drawableTable.getDrawableCells().add(new DrawableCell(cx0, cy0, cx1, cy1,
-								lastBackgroundColorNullCellOptional.map(Cell::getBackgroundColor).orElse(null),
-								drawableCellCells.stream().map(Cell::getCellContent).collect(Collectors.toList())));
+						drawableTable.getDrawableCells()
+								.add(new DrawableCell(cx0, cy0, cx1, cy1,
+										lastBackgroundColorNullCellOptional.map(Cell::getBackgroundColor).orElse(null),
+										drawableCellCells.stream().map(Cell::getCellContent).filter(Objects::nonNull)
+												.collect(Collectors.toList())));
 					}
-					cy0 = cy1 + horizontalBorders.get(j + 1).getSize();
+					cy0 = cy1 + horizontalBorders.get(j + 1).getSize() + 1;
 				}
 			}
-			cx0 = cx1 + verticalBorders.get(i + 1).getSize();
+			cx0 = cx1 + verticalBorders.get(i + 1).getSize() + 1;
 		}
 	}
 
@@ -221,9 +224,6 @@ public class Tables {
 		}
 		if (cell.getRowIndex() < 0 || cell.getRowIndex() > table.getRows().size()) {
 			throw new EPaperValidationException("Invalid row index: " + cell.getRowIndex());
-		}
-		if (cell.getCellContent() == null) {
-			throw new EPaperValidationException("Empty cell content");
 		}
 	}
 }

@@ -88,8 +88,8 @@ public abstract class AbstractEPaperClient implements EPaperClient, CellContentD
 		Coordinates.validateCoordinates(x1, y1);
 		int topLeftX = Coordinates.getTopLeftX(x0, x1);
 		int topLeftY = Coordinates.getTopLeftY(y0, y1);
-		int width = Coordinates.getBottomRightX(x0, x1) - topLeftX;
-		int height = Coordinates.getBottomRightY(y0, y1) - topLeftY;
+		int width = Coordinates.getBottomRightX(x0, x1) - topLeftX + 1;
+		int height = Coordinates.getBottomRightY(y0, y1) - topLeftY + 1;
 		Tables.validateTable(width, height, table);
 		DrawableTable drawableTable = Tables.getDrawableTable(width, height, topLeftX, topLeftY, table);
 		for (DrawableCell drawableCell : drawableTable.getDrawableCells()) {
@@ -187,8 +187,8 @@ public abstract class AbstractEPaperClient implements EPaperClient, CellContentD
 		Lines.validateText(text);
 		int topLeftX = Coordinates.getTopLeftX(x0, x1);
 		int topLeftY = Coordinates.getTopLeftY(y0, y1);
-		int width = Coordinates.getBottomRightX(x0, x1) - topLeftX;
-		int height = Coordinates.getBottomRightY(y0, y1) - topLeftY;
+		int width = Coordinates.getBottomRightX(x0, x1) - topLeftX + 1;
+		int height = Coordinates.getBottomRightY(y0, y1) - topLeftY + 1;
 		List<Line> lines = Lines.getLines(width, height, topLeftX, topLeftY, fontSize, lineSpacing, horizontalAlignment,
 				verticalAlignment, text);
 		setFontSize(fontSize);
