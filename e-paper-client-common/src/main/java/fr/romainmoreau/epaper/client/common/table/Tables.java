@@ -68,9 +68,6 @@ public class Tables {
 		if (table.getHorizontalBorders().subList(0, 2).stream().mapToInt(Border::getSize).sum() >= height) {
 			throw new EPaperValidationException("Not enough height for the horizontal borders");
 		}
-		for (Cell cell : table.getCells()) {
-			validateCell(cell, width, height, table);
-		}
 	}
 
 	private static <T> List<Integer> getSizes(int size, List<Border> borders, List<T> tList,
@@ -215,15 +212,6 @@ public class Tables {
 	private static void validateRow(Row row, int width, int height, Table table) throws EPaperValidationException {
 		if (row.getHeight() < 0d) {
 			throw new EPaperValidationException("Invalid row height");
-		}
-	}
-
-	private static void validateCell(Cell cell, int width, int height, Table table) throws EPaperValidationException {
-		if (cell.getColumnIndex() < 0 || cell.getColumnIndex() > table.getColumns().size()) {
-			throw new EPaperValidationException("Invalid column index: " + cell.getColumnIndex());
-		}
-		if (cell.getRowIndex() < 0 || cell.getRowIndex() > table.getRows().size()) {
-			throw new EPaperValidationException("Invalid row index: " + cell.getRowIndex());
 		}
 	}
 }
