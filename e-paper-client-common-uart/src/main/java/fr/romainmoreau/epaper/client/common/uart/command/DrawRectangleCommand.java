@@ -1,14 +1,14 @@
-package fr.romainmoreau.epaper.client.common.command;
+package fr.romainmoreau.epaper.client.common.uart.command;
 
 import java.nio.ByteBuffer;
 
-public class FillRectangleCommand extends Command {
-	public FillRectangleCommand(int x0, int y0, int x1, int y1) {
+public class DrawRectangleCommand extends Command {
+	public DrawRectangleCommand(int x0, int y0, int x1, int y1) {
 		this((short) x0, (short) y0, (short) x1, (short) y1);
 	}
 
-	public FillRectangleCommand(short x0, short y0, short x1, short y1) {
-		super(0x24, getParametersOrData(x0, y0, x1, y1));
+	public DrawRectangleCommand(short x0, short y0, short x1, short y1) {
+		super(0x25, getParametersOrData(x0, y0, x1, y1));
 	}
 
 	private static byte[] getParametersOrData(short x0, short y0, short x1, short y1) {

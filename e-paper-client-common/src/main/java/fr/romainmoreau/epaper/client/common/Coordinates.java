@@ -35,10 +35,4 @@ public class Coordinates {
 			throw new EPaperValidationException("Empty display direction");
 		}
 	}
-
-	public static DisplayDirection getDisplayDirection(byte[] response) {
-		StringBuffer stringBuffer = new StringBuffer();
-		stringBuffer.append((char) response[0]);
-		return DisplayDirection.values()[Integer.parseInt(stringBuffer.toString())];
-	}
 }

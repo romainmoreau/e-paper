@@ -2,13 +2,13 @@ package fr.romainmoreau.epaper.client.jssc;
 
 import java.io.IOException;
 
-import fr.romainmoreau.epaper.client.common.AbstractEPaperClient;
-import fr.romainmoreau.epaper.client.common.command.Command;
+import fr.romainmoreau.epaper.client.common.uart.AbstractUARTEPaperClient;
+import fr.romainmoreau.epaper.client.common.uart.command.Command;
 import jssc.SerialPort;
 import jssc.SerialPortEvent;
 import jssc.SerialPortException;
 
-public class JsscEPaperClient extends AbstractEPaperClient {
+public class JsscEPaperClient extends AbstractUARTEPaperClient {
 	private SerialPort serialPort;
 
 	private volatile byte[] response;

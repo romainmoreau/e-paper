@@ -1,4 +1,4 @@
-package fr.romainmoreau.epaper.client.common.command;
+package fr.romainmoreau.epaper.client.common.uart.command;
 
 public class GetDisplayDirectionCommand extends Command {
 	public GetDisplayDirectionCommand() {

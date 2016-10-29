@@ -14,6 +14,7 @@
 		<module>e-paper-client-api</module>
 		<module>e-paper-client-jaxb-api</module>
 		<module>e-paper-client-common</module>
+		<module>e-paper-client-common-uart</module>
 		<module>e-paper-client-jssc</module>
 		<module>e-paper-client-web</module>
 	</modules>
@@ -30,6 +31,11 @@
 			<dependency>
 				<groupId>fr.romainmoreau.epaper</groupId>
 				<artifactId>e-paper-client-common</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>fr.romainmoreau.epaper</groupId>
+				<artifactId>e-paper-client-common-uart</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>

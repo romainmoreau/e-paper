@@ -21,3 +21,7 @@
 /e-paper-client-api/target
 /e-paper-client-api/.project
 /e-paper-client-web/.factorypath
+/e-paper-client-common-uart/.classpath
+/e-paper-client-common-uart/.gitignore
+/e-paper-client-common-uart/.project
+/e-paper-client-common-uart/.settings

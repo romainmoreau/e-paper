@@ -36,16 +36,6 @@ public class Colors {
 		return points;
 	}
 
-	public static DrawingColors getDrawingColors(byte[] response) {
-		return new DrawingColors(getColor(response[0]), getColor(response[1]));
-	}
-
-	private static Color getColor(byte value) {
-		StringBuffer stringBuffer = new StringBuffer();
-		stringBuffer.append((char) value);
-		return Color.values()[Integer.parseInt(stringBuffer.toString())];
-	}
-
 	public static void validateDrawingColors(DrawingColors drawingColors) throws EPaperValidationException {
 		if (drawingColors == null) {
 			throw new EPaperValidationException("Drawing colors null");

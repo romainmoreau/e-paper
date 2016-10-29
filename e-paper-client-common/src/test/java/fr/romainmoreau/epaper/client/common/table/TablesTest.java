@@ -1,4 +1,4 @@
-package fr.romainmoreau.epaper.client.common;
+package fr.romainmoreau.epaper.client.common.table;
 
 import org.junit.Assert;
 import org.junit.Test;
