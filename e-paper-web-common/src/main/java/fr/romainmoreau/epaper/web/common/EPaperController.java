@@ -1,4 +1,4 @@
-package fr.romainmoreau.epaper.web;
+package fr.romainmoreau.epaper.web.common;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

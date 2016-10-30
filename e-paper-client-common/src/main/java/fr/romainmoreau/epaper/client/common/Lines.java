@@ -17,7 +17,9 @@ public class Lines {
 
 	public static final String LINE_FEED = "\n";
 
-	private static final Pattern VALID_TEXT_PATTERN = Pattern.compile("[[\\p{Print}&&\\p{ASCII}]\u00A0\n]+");
+	private static final Pattern VALID_TEXT_PATTERN = Pattern.compile("[[\\p{Print}&&\\p{ASCII}]]+");
+
+	private static final Pattern VALID_ADVANCED_TEXT_PATTERN = Pattern.compile("[[\\p{Print}&&\\p{ASCII}]\u00A0\n]+");
 
 	public static void validateFontSize(FontSize fontSize) throws EPaperValidationException {
 		if (fontSize == null) {
@@ -46,6 +48,13 @@ public class Lines {
 
 	public static void validateText(String text) throws EPaperValidationException {
 		Matcher matcher = VALID_TEXT_PATTERN.matcher(text);
+		if (!matcher.matches()) {
+			throw new EPaperValidationException("Invalid character");
+		}
+	}
+
+	public static void validateAdvancedText(String text) throws EPaperValidationException {
+		Matcher matcher = VALID_ADVANCED_TEXT_PATTERN.matcher(text);
 		if (!matcher.matches()) {
 			throw new EPaperValidationException("Invalid character");
 		}

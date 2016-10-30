@@ -89,6 +89,7 @@ public abstract class AbstractUARTEPaperClient extends AbstractEPaperClient {
 	@Override
 	public synchronized void displayText(int x, int y, String text) throws IOException, EPaperException {
 		Coordinates.validateCoordinates(x, y);
+		Lines.validateText(text);
 		sendCommand(new DisplayTextCommand(x, y, text));
 		waitForResponse();
 		checkResponseOK();

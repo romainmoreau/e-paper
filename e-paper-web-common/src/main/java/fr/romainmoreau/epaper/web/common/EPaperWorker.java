@@ -1,4 +1,4 @@
-package fr.romainmoreau.epaper.web;
+package fr.romainmoreau.epaper.web.common;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;

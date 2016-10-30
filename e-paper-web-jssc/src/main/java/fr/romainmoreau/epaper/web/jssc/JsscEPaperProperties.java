@@ -1,4 +1,4 @@
-package fr.romainmoreau.epaper.web;
+package fr.romainmoreau.epaper.web.jssc;
 
 import javax.validation.constraints.NotNull;
 
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @ConfigurationProperties("e-paper")
-public class EPaperProperties {
+public class JsscEPaperProperties {
 	@NotNull
 	private String portName;
 

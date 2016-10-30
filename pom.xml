@@ -12,11 +12,15 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>e-paper-client-api</module>
-		<module>e-paper-client-jaxb-api</module>
 		<module>e-paper-client-common</module>
+		<module>e-paper-client-javafx</module>
 		<module>e-paper-client-common-uart</module>
 		<module>e-paper-client-jssc</module>
+		<module>e-paper-jaxb-api</module>
 		<module>e-paper-client-web</module>
+		<module>e-paper-web-common</module>
+		<module>e-paper-web-jssc</module>
+		<module>e-paper-web-javafx</module>
 	</modules>
 	<properties>
 		<java.version>1.8</java.version>
@@ -35,6 +39,16 @@
 			</dependency>
 			<dependency>
 				<groupId>fr.romainmoreau.epaper</groupId>
+				<artifactId>e-paper-client-javafx</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>fr.romainmoreau.epaper</groupId>
+				<artifactId>e-paper-client-web</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>fr.romainmoreau.epaper</groupId>
 				<artifactId>e-paper-client-common-uart</artifactId>
 				<version>${project.version}</version>
 			</dependency>
@@ -45,12 +59,22 @@
 			</dependency>
 			<dependency>
 				<groupId>fr.romainmoreau.epaper</groupId>
-				<artifactId>e-paper-client-jaxb-api</artifactId>
+				<artifactId>e-paper-jaxb-api</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>fr.romainmoreau.epaper</groupId>
-				<artifactId>e-paper-client-web</artifactId>
+				<artifactId>e-paper-web-common</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>fr.romainmoreau.epaper</groupId>
+				<artifactId>e-paper-web-jssc</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>fr.romainmoreau.epaper</groupId>
+				<artifactId>e-paper-web-javafx</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>

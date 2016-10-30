@@ -1,4 +1,4 @@
-package fr.romainmoreau.epaper.web;
+package fr.romainmoreau.epaper.web.jssc;
 
 import java.io.IOException;
 
@@ -12,21 +12,21 @@ import org.springframework.context.annotation.Bean;
 import fr.romainmoreau.epaper.client.api.EPaperClient;
 import fr.romainmoreau.epaper.client.jssc.JsscEPaperClient;
 
-@SpringBootApplication
-public class EPaperApplication {
-	private static final Logger LOGGER = LoggerFactory.getLogger(EPaperApplication.class);
+@SpringBootApplication(scanBasePackages = "fr.romainmoreau.epaper.web")
+public class JsscEPaperApplication {
+	private static final Logger LOGGER = LoggerFactory.getLogger(JsscEPaperApplication.class);
 
 	@Autowired
-	private EPaperProperties ePaperProperties;
+	private JsscEPaperProperties ePaperProperties;
 
 	@Bean
 	public EPaperClient ePaperClient() throws IOException {
-		LOGGER.info("Creating e-paper client using port name {} and timeout {}", ePaperProperties.getPortName(),
+		LOGGER.info("Creating JSSC e-paper client using port name {} and timeout {}", ePaperProperties.getPortName(),
 				ePaperProperties.getTimeout());
 		return new JsscEPaperClient(ePaperProperties.getPortName(), ePaperProperties.getTimeout());
 	}
 
 	public static final void main(String[] args) throws Exception {
-		SpringApplication.run(EPaperApplication.class, args);
+		SpringApplication.run(JsscEPaperApplication.class, args);
 	}
 }

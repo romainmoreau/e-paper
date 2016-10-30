@@ -13,29 +13,29 @@ import fr.romainmoreau.epaper.client.api.FontSize;
 
 public class LinesTest {
 	@Test(expected = EPaperValidationException.class)
-	public void validateTextTest1() throws EPaperValidationException {
-		Lines.validateText("é");
+	public void validateAdvancedTextTest1() throws EPaperValidationException {
+		Lines.validateAdvancedText("é");
 	}
 
 	@Test
-	public void validateTextTest2() throws EPaperValidationException {
+	public void validateAdvancedTextTest2() throws EPaperValidationException {
 		String validCharacters = getValidCharacters();
 		Assert.assertEquals(97, validCharacters.length());
-		Lines.validateText(validCharacters);
+		Lines.validateAdvancedText(validCharacters);
 	}
 
 	@Test(expected = EPaperValidationException.class)
-	public void validateTextTest3() throws EPaperValidationException {
+	public void validateAdvancedTextTest3() throws EPaperValidationException {
 		String text = getValidCharacters() + "é";
 		Assert.assertEquals(98, text.length());
-		Lines.validateText(text);
+		Lines.validateAdvancedText(text);
 	}
 
 	@Test(expected = EPaperValidationException.class)
-	public void validateTextTest4() throws EPaperValidationException {
+	public void validateAdvancedTextTest4() throws EPaperValidationException {
 		String text = getValidCharacters() + "\r";
 		Assert.assertEquals(98, text.length());
-		Lines.validateText(text);
+		Lines.validateAdvancedText(text);
 	}
 
 	@Test(expected = EPaperValidationException.class)

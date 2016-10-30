@@ -6,19 +6,28 @@
 		<artifactId>e-paper</artifactId>
 		<version>0.1.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>e-paper-client-web</artifactId>
+	<artifactId>e-paper-web-jssc</artifactId>
 	<dependencies>
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>fr.romainmoreau.epaper</groupId>
-			<artifactId>e-paper-jaxb-api</artifactId>
+			<artifactId>e-paper-web-common</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>fr.romainmoreau.epaper</groupId>
-			<artifactId>e-paper-client-common</artifactId>
+			<artifactId>e-paper-client-jssc</artifactId>
 		</dependency>
 	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
 </project>

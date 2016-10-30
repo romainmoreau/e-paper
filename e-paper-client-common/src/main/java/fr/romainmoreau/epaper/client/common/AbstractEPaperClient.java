@@ -101,7 +101,7 @@ public abstract class AbstractEPaperClient implements EPaperClient, CellContentD
 		Lines.validateSpacing(lineSpacing);
 		Lines.validateHorizontalAlignment(horizontalAlignment);
 		Lines.validateVerticalAlignment(verticalAlignment);
-		Lines.validateText(text);
+		Lines.validateAdvancedText(text);
 		int topLeftX = Coordinates.getTopLeftX(x0, x1);
 		int topLeftY = Coordinates.getTopLeftY(y0, y1);
 		int width = Coordinates.getBottomRightX(x0, x1) - topLeftX + 1;

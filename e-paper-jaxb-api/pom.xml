@@ -6,19 +6,11 @@
 		<artifactId>e-paper</artifactId>
 		<version>0.1.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>e-paper-client-web</artifactId>
+	<artifactId>e-paper-jaxb-api</artifactId>
 	<dependencies>
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>fr.romainmoreau.epaper</groupId>
-			<artifactId>e-paper-jaxb-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>fr.romainmoreau.epaper</groupId>
-			<artifactId>e-paper-client-common</artifactId>
+			<artifactId>e-paper-client-api</artifactId>
 		</dependency>
 	</dependencies>
 </project>
