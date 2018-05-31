@@ -15,6 +15,8 @@ public class JsscEPaperProperties {
 
 	private long timeout;
 
+	private long receiveTimeout;
+
 	public String getPortName() {
 		return portName;
 	}
@@ -29,5 +31,13 @@ public class JsscEPaperProperties {
 
 	public void setTimeout(long timeout) {
 		this.timeout = timeout;
+	}
+
+	public long getReceiveTimeout() {
+		return receiveTimeout;
+	}
+
+	public void setReceiveTimeout(long receiveTimeout) {
+		this.receiveTimeout = receiveTimeout;
 	}
 }

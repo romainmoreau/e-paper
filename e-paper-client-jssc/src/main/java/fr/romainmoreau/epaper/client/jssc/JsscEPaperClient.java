@@ -1,27 +1,29 @@
 package fr.romainmoreau.epaper.client.jssc;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
 
 import fr.romainmoreau.epaper.client.common.uart.AbstractUARTEPaperClient;
 import fr.romainmoreau.epaper.client.common.uart.command.Command;
 import jssc.SerialPort;
-import jssc.SerialPortEvent;
 import jssc.SerialPortException;
 
 public class JsscEPaperClient extends AbstractUARTEPaperClient {
 	private SerialPort serialPort;
 
-	private volatile byte[] response;
+	private byte[] response;
 
-	public JsscEPaperClient(String portName, long timeout) throws IOException {
-		super(timeout);
+	public JsscEPaperClient(String portName, long timeout, long receiveTimeout) throws IOException {
+		super(timeout, receiveTimeout);
 		try {
 			serialPort = new SerialPort(portName);
 			serialPort.openPort();
 			serialPort.setParams(SerialPort.BAUDRATE_115200, SerialPort.DATABITS_8, SerialPort.STOPBITS_1,
 					SerialPort.PARITY_NONE, false, false);
 			serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_NONE);
-			serialPort.addEventListener(this::serialEvent, SerialPort.MASK_RXCHAR);
 		} catch (SerialPortException e) {
 			throw new IOException(e);
 		}
@@ -52,20 +54,40 @@ public class JsscEPaperClient extends AbstractUARTEPaperClient {
 	}
 
 	@Override
-	protected void waitForResponse(long timeout) {
+	protected void waitForResponse(long timeout, long receiveTimeout) {
 		try {
-			wait(timeout);
+			LocalDateTime start = LocalDateTime.now();
+			byte[] readBytes = serialPort.readBytes();
+			while (readBytes == null) {
+				wait(receiveTimeout);
+				if (start.until(LocalDateTime.now(), ChronoUnit.MILLIS) >= timeout) {
+					return;
+				}
+				readBytes = serialPort.readBytes();
+			}
+			List<Byte> responseByteList = new ArrayList<>();
+			for (int i = 0; i < readBytes.length; i++) {
+				responseByteList.add(readBytes[i]);
+			}
+			while (readBytes != null) {
+				wait(receiveTimeout);
+				if (start.until(LocalDateTime.now(), ChronoUnit.MILLIS) >= timeout) {
+					return;
+				}
+				readBytes = serialPort.readBytes();
+				if (readBytes != null) {
+					for (int i = 0; i < readBytes.length; i++) {
+						responseByteList.add(readBytes[i]);
+					}
+				}
+			}
+			byte[] responseBytes = new byte[responseByteList.size()];
+			for (int i = 0; i < responseBytes.length; i++) {
+				responseBytes[i] = responseByteList.get(i);
+			}
+			response = responseBytes;
 		} catch (InterruptedException e) {
 			throw new IllegalStateException(e);
-		}
-	}
-
-	private void serialEvent(SerialPortEvent serialPortEvent) {
-		try {
-			response = serialPort.readBytes(serialPortEvent.getEventValue());
-			synchronized (JsscEPaperClient.this) {
-				JsscEPaperClient.this.notify();
-			}
 		} catch (SerialPortException e) {
 			throw new RuntimeException(e);
 		}

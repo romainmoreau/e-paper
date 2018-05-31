@@ -33,8 +33,11 @@ public abstract class AbstractUARTEPaperClient extends AbstractEPaperClient {
 
 	private final long timeout;
 
-	public AbstractUARTEPaperClient(long timeout) {
+	private final long receiveTimeout;
+
+	public AbstractUARTEPaperClient(long timeout, long receiveTimeout) {
 		this.timeout = timeout;
+		this.receiveTimeout = receiveTimeout;
 	}
 
 	@Override
@@ -167,10 +170,10 @@ public abstract class AbstractUARTEPaperClient extends AbstractEPaperClient {
 
 	protected abstract void sendCommand(Command command) throws IOException;
 
-	protected abstract void waitForResponse(long timeout);
+	protected abstract void waitForResponse(long timeout, long receiveTimeout);
 
 	private void waitForResponse() {
-		waitForResponse(timeout);
+		waitForResponse(timeout, receiveTimeout);
 	}
 
 	private void checkResponsePresent() throws EPaperResponseException {
