@@ -6,28 +6,15 @@
 		<artifactId>e-paper</artifactId>
 		<version>0.1.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>e-paper-web-jssc</artifactId>
+	<artifactId>e-paper-client-jserialcomm</artifactId>
 	<dependencies>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-configuration-processor</artifactId>
-			<optional>true</optional>
+			<groupId>fr.romainmoreau.epaper</groupId>
+			<artifactId>e-paper-client-common-uart</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>fr.romainmoreau.epaper</groupId>
-			<artifactId>e-paper-web-common</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>fr.romainmoreau.epaper</groupId>
-			<artifactId>e-paper-client-jssc</artifactId>
+			<groupId>com.fazecast</groupId>
+			<artifactId>jSerialComm</artifactId>
 		</dependency>
 	</dependencies>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
 </project>

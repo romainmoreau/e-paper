@@ -1,4 +1,7 @@
-package fr.romainmoreau.epaper.client.jssc;
+package fr.romainmoreau.epaper.client.jserialcomm;
+
+import static com.fazecast.jSerialComm.SerialPort.NO_PARITY;
+import static com.fazecast.jSerialComm.SerialPort.ONE_STOP_BIT;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -6,35 +9,32 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fazecast.jSerialComm.SerialPort;
+
 import fr.romainmoreau.epaper.client.common.uart.AbstractUARTEPaperClient;
 import fr.romainmoreau.epaper.client.common.uart.command.Command;
-import jssc.SerialPort;
-import jssc.SerialPortException;
 
-public class JsscEPaperClient extends AbstractUARTEPaperClient {
+public class JSerialCommEPaperClient extends AbstractUARTEPaperClient {
 	private SerialPort serialPort;
 
 	private byte[] response;
 
-	public JsscEPaperClient(String portName, long timeout, long receiveTimeout) throws IOException {
+	public JSerialCommEPaperClient(String portName, long timeout, long receiveTimeout) throws IOException {
 		super(timeout, receiveTimeout);
-		try {
-			serialPort = new SerialPort(portName);
-			serialPort.openPort();
-			serialPort.setParams(SerialPort.BAUDRATE_115200, SerialPort.DATABITS_8, SerialPort.STOPBITS_1,
-					SerialPort.PARITY_NONE, false, false);
-			serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_NONE);
-		} catch (SerialPortException e) {
-			throw new IOException(e);
+		serialPort = SerialPort.getCommPort(portName);
+		serialPort.setBaudRate(115200);
+		serialPort.setNumDataBits(8);
+		serialPort.setNumStopBits(ONE_STOP_BIT);
+		serialPort.setParity(NO_PARITY);
+		if (!serialPort.openPort()) {
+			throw new IOException("Port not opened");
 		}
 	}
 
 	@Override
 	public synchronized void close() throws IOException {
-		try {
-			serialPort.closePort();
-		} catch (SerialPortException e) {
-			throw new IOException(e);
+		if (!serialPort.closePort()) {
+			throw new IOException("Port not closed");
 		}
 	}
 
@@ -45,11 +45,10 @@ public class JsscEPaperClient extends AbstractUARTEPaperClient {
 
 	@Override
 	protected void sendCommand(Command command) throws IOException {
-		try {
-			response = null;
-			serialPort.writeBytes(command.getFrame());
-		} catch (SerialPortException e) {
-			throw new IOException(e);
+		response = null;
+		int bytesWritten = serialPort.writeBytes(command.getFrame(), command.getFrame().length);
+		if (bytesWritten != command.getFrame().length) {
+			throw new IOException("Error writing bytes");
 		}
 	}
 
@@ -57,13 +56,13 @@ public class JsscEPaperClient extends AbstractUARTEPaperClient {
 	protected void waitForResponse(long timeout, long receiveTimeout) {
 		try {
 			LocalDateTime start = LocalDateTime.now();
-			byte[] readBytes = serialPort.readBytes();
+			byte[] readBytes = readBytes();
 			while (readBytes == null) {
 				wait(receiveTimeout);
 				if (start.until(LocalDateTime.now(), ChronoUnit.MILLIS) >= timeout) {
 					return;
 				}
-				readBytes = serialPort.readBytes();
+				readBytes = readBytes();
 			}
 			List<Byte> responseByteList = new ArrayList<>();
 			for (int i = 0; i < readBytes.length; i++) {
@@ -74,7 +73,7 @@ public class JsscEPaperClient extends AbstractUARTEPaperClient {
 				if (start.until(LocalDateTime.now(), ChronoUnit.MILLIS) >= timeout) {
 					return;
 				}
-				readBytes = serialPort.readBytes();
+				readBytes = readBytes();
 				if (readBytes != null) {
 					for (int i = 0; i < readBytes.length; i++) {
 						responseByteList.add(readBytes[i]);
@@ -88,8 +87,22 @@ public class JsscEPaperClient extends AbstractUARTEPaperClient {
 			response = responseBytes;
 		} catch (InterruptedException e) {
 			throw new IllegalStateException(e);
-		} catch (SerialPortException e) {
-			throw new RuntimeException(e);
+		}
+	}
+
+	private byte[] readBytes() {
+		int bytesAvailable = serialPort.bytesAvailable();
+		if (bytesAvailable == 0) {
+			return null;
+		} else if (bytesAvailable > 0) {
+			byte[] bytes = new byte[bytesAvailable];
+			if (serialPort.readBytes(bytes, bytes.length) == bytes.length) {
+				return bytes;
+			} else {
+				throw new RuntimeException("Error reading bytes");
+			}
+		} else {
+			throw new RuntimeException("Port not opened");
 		}
 	}
 }

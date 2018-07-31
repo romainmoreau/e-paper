@@ -1,4 +1,4 @@
-package fr.romainmoreau.epaper.web.jssc;
+package fr.romainmoreau.epaper.web.jserialcomm;
 
 import javax.validation.constraints.NotNull;
 
@@ -9,7 +9,7 @@ import org.springframework.validation.annotation.Validated;
 @Component
 @Validated
 @ConfigurationProperties("e-paper")
-public class JsscEPaperProperties {
+public class JSerialCommEPaperProperties {
 	@NotNull
 	private String portName;
 

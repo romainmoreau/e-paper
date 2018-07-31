@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.2.RELEASE</version>
+		<version>2.1.0.M1</version>
 	</parent>
 	<groupId>fr.romainmoreau.epaper</groupId>
 	<artifactId>e-paper</artifactId>
@@ -15,15 +15,15 @@
 		<module>e-paper-client-common</module>
 		<module>e-paper-client-javafx</module>
 		<module>e-paper-client-common-uart</module>
-		<module>e-paper-client-jssc</module>
+		<module>e-paper-client-jserialcomm</module>
 		<module>e-paper-jaxb-api</module>
 		<module>e-paper-client-web</module>
 		<module>e-paper-web-common</module>
-		<module>e-paper-web-jssc</module>
+		<module>e-paper-web-jserialcomm</module>
 		<module>e-paper-web-javafx</module>
 	</modules>
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>10</java.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -44,17 +44,12 @@
 			</dependency>
 			<dependency>
 				<groupId>fr.romainmoreau.epaper</groupId>
-				<artifactId>e-paper-client-web</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>fr.romainmoreau.epaper</groupId>
 				<artifactId>e-paper-client-common-uart</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>fr.romainmoreau.epaper</groupId>
-				<artifactId>e-paper-client-jssc</artifactId>
+				<artifactId>e-paper-client-jserialcomm</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
@@ -68,20 +63,32 @@
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>fr.romainmoreau.epaper</groupId>
-				<artifactId>e-paper-web-jssc</artifactId>
-				<version>${project.version}</version>
+				<groupId>com.fazecast</groupId>
+				<artifactId>jSerialComm</artifactId>
+				<version>2.0.3</version>
 			</dependency>
 			<dependency>
-				<groupId>fr.romainmoreau.epaper</groupId>
-				<artifactId>e-paper-web-javafx</artifactId>
-				<version>${project.version}</version>
+				<groupId>com.sun.xml.bind</groupId>
+				<artifactId>jaxb-impl</artifactId>
+				<version>2.3.0.1</version>
 			</dependency>
 			<dependency>
-				<groupId>org.scream3r</groupId>
-				<artifactId>jssc</artifactId>
-				<version>2.8.0</version>
+				<groupId>com.sun.xml.bind</groupId>
+				<artifactId>jaxb-core</artifactId>
+				<version>2.3.0.1</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	<repositories>
+		<repository>
+			<id>spring-milestones</id>
+			<url>https://repo.spring.io/milestone</url>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>spring-milestones</id>
+			<url>https://repo.spring.io/milestone</url>
+		</pluginRepository>
+	</pluginRepositories>
 </project>
