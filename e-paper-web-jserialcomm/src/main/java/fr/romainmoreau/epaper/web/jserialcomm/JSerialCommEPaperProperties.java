@@ -3,10 +3,8 @@ package fr.romainmoreau.epaper.web.jserialcomm;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
-@Component
 @Validated
 @ConfigurationProperties("e-paper")
 public class JSerialCommEPaperProperties {
