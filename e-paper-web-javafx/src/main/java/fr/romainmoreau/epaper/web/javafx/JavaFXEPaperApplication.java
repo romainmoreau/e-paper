@@ -2,6 +2,7 @@ package fr.romainmoreau.epaper.web.javafx;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 
@@ -11,6 +12,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 @SpringBootApplication(scanBasePackages = "fr.romainmoreau.epaper.web")
+@ConfigurationPropertiesScan
 public class JavaFXEPaperApplication extends Application {
 	private static String[] args;
 
