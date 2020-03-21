@@ -5,7 +5,6 @@ import org.junit.Test;
 
 import fr.romainmoreau.epaper.client.api.EPaperValidationException;
 import fr.romainmoreau.epaper.client.api.FontSize;
-import fr.romainmoreau.epaper.client.common.Line;
 
 public class LineTest {
 	@Test(expected = EPaperValidationException.class)

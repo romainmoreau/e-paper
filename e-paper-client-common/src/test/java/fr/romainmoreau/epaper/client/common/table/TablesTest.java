@@ -9,8 +9,6 @@ import fr.romainmoreau.epaper.client.api.table.Border;
 import fr.romainmoreau.epaper.client.api.table.Column;
 import fr.romainmoreau.epaper.client.api.table.Row;
 import fr.romainmoreau.epaper.client.api.table.Table;
-import fr.romainmoreau.epaper.client.common.table.DrawableTable;
-import fr.romainmoreau.epaper.client.common.table.Tables;
 
 public class TablesTest {
 	@Test(expected = EPaperValidationException.class)
