@@ -3,9 +3,6 @@ package fr.romainmoreau.epaper.web.common;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +11,8 @@ import org.springframework.stereotype.Service;
 import fr.romainmoreau.epaper.client.api.EPaperClient;
 import fr.romainmoreau.epaper.jaxb.api.Command;
 import fr.romainmoreau.epaper.jaxb.api.Commands;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 
 @Service
 public class EPaperWorker {

@@ -1,13 +1,12 @@
 package fr.romainmoreau.epaper.jaxb.api.table;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlValue;
-
 import fr.romainmoreau.epaper.client.api.Color;
 import fr.romainmoreau.epaper.client.api.FontSize;
 import fr.romainmoreau.epaper.client.api.HorizontalAlignment;
 import fr.romainmoreau.epaper.client.api.VerticalAlignment;
 import fr.romainmoreau.epaper.client.api.table.TextCellContent;
+import jakarta.xml.bind.annotation.XmlAttribute;
+import jakarta.xml.bind.annotation.XmlValue;
 
 public class Text implements CellContent {
 	private Color textColor;

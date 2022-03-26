@@ -3,10 +3,6 @@ package fr.romainmoreau.epaper.jaxb.api;
 import java.io.IOException;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
-
 import fr.romainmoreau.epaper.client.api.Color;
 import fr.romainmoreau.epaper.client.api.EPaperClient;
 import fr.romainmoreau.epaper.client.api.EPaperException;
@@ -14,6 +10,9 @@ import fr.romainmoreau.epaper.jaxb.api.table.Border;
 import fr.romainmoreau.epaper.jaxb.api.table.Cell;
 import fr.romainmoreau.epaper.jaxb.api.table.Column;
 import fr.romainmoreau.epaper.jaxb.api.table.Row;
+import jakarta.xml.bind.annotation.XmlAttribute;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlElementWrapper;
 
 public class DrawTable implements Command {
 	private int x0;

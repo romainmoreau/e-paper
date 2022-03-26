@@ -1,6 +1,6 @@
 package fr.romainmoreau.epaper.jaxb.api.table;
 
-import javax.xml.bind.annotation.XmlAttribute;
+import jakarta.xml.bind.annotation.XmlAttribute;
 
 public class Column {
 	private double width;

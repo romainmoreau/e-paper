@@ -1,8 +1,7 @@
 package fr.romainmoreau.epaper.jaxb.api.table;
 
-import javax.xml.bind.annotation.XmlAttribute;
-
 import fr.romainmoreau.epaper.client.api.Color;
+import jakarta.xml.bind.annotation.XmlAttribute;
 
 public class Border {
 	private int size;

@@ -2,11 +2,10 @@ package fr.romainmoreau.epaper.jaxb.api;
 
 import java.io.IOException;
 
-import javax.xml.bind.annotation.XmlAttribute;
-
 import fr.romainmoreau.epaper.client.api.DisplayDirection;
 import fr.romainmoreau.epaper.client.api.EPaperClient;
 import fr.romainmoreau.epaper.client.api.EPaperException;
+import jakarta.xml.bind.annotation.XmlAttribute;
 
 public class SetDisplayDirection implements Command {
 	private DisplayDirection displayDirection;

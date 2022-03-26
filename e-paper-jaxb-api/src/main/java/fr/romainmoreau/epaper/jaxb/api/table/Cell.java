@@ -1,10 +1,9 @@
 package fr.romainmoreau.epaper.jaxb.api.table;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElements;
-
 import fr.romainmoreau.epaper.client.api.Color;
+import jakarta.xml.bind.annotation.XmlAttribute;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlElements;
 
 public class Cell {
 	private int columnIndex;

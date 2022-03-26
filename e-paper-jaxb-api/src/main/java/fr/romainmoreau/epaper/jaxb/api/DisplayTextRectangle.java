@@ -2,14 +2,13 @@ package fr.romainmoreau.epaper.jaxb.api;
 
 import java.io.IOException;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlValue;
-
 import fr.romainmoreau.epaper.client.api.EPaperClient;
 import fr.romainmoreau.epaper.client.api.EPaperException;
 import fr.romainmoreau.epaper.client.api.FontSize;
 import fr.romainmoreau.epaper.client.api.HorizontalAlignment;
 import fr.romainmoreau.epaper.client.api.VerticalAlignment;
+import jakarta.xml.bind.annotation.XmlAttribute;
+import jakarta.xml.bind.annotation.XmlValue;
 
 public class DisplayTextRectangle implements Command {
 	private int x0;
