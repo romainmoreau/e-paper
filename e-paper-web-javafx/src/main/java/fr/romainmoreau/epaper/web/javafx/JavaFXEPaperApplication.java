@@ -21,7 +21,7 @@ public class JavaFXEPaperApplication extends Application {
 	private static ConfigurableApplicationContext configurableApplicationContext;
 
 	@Bean
-	public EPaperClient ePaperClient() {
+	EPaperClient ePaperClient() {
 		return new JavaFXEPaperClient(primaryStage);
 	}
 
