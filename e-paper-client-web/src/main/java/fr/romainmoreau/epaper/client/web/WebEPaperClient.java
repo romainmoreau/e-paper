@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.Arrays;
 
 import org.springframework.web.client.RestTemplate;
@@ -37,7 +36,7 @@ public class WebEPaperClient extends AbstractEPaperClient {
 
 	public WebEPaperClient(String protocol, String host, int port) throws MalformedURLException, URISyntaxException {
 		restTemplate = new RestTemplate();
-		uri = new URL(protocol, host, port, "/").toURI();
+		uri = new URI(protocol, null, host, port, "/", null, null);
 	}
 
 	@Override
