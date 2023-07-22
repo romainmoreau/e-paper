@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.1.1</version>
+		<version>3.2.0-M1</version>
 	</parent>
 	<groupId>fr.romainmoreau.epaper</groupId>
 	<artifactId>e-paper</artifactId>
@@ -83,7 +83,7 @@
 			<dependency>
 				<groupId>org.openjfx</groupId>
 				<artifactId>javafx-controls</artifactId>
-				<version>20.0.1</version>
+				<version>20.0.2</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
